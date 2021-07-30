@@ -17,10 +17,8 @@ jobs:
         username: ${{ secrets.DOCKER_USER_NAME }}
         password: ${{ secrets.DOCKER_USER_PASSWORD }}
     - name: docker image create
-      run: docker run -d --name ccflow --privileged ryolong1988/ubuntu-laravel:0.04 /sbin/init
-    - name: docker src copy
-      run: docker cp /home/runner/work/github-actions-demo/github-actions-demo ccflow:/var
-    - name: docker commit
-      run: docker commit ccflow ryolong1988/ubuntu-laravel:0.05
-    - name: docker push
-      run: docker push ryolong1988/ubuntu-laravel:0.05
+      run: |
+        docker run -d --name ccflow --privileged ryolong1988/ubuntu-laravel:0.04 /sbin/init
+        docker cp /home/runner/work/github-actions-demo/github-actions-demo ccflow:/var
+        docker commit ccflow ryolong1988/ubuntu-laravel:0.06
+        docker push ryolong1988/ubuntu-laravel:0.06
